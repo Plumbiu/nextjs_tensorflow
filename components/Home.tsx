@@ -10,45 +10,46 @@ import React from 'react'
 import QAScore from './QAScore'
 import classes from '@/styles/home.module.css'
 import { useRouter } from 'next/router'
+import { TLocale } from '@/types'
 
 export default function Home(props: any) {
-  const { push, locale } = useRouter()
-  const localLanuage = (locale || 'zh-CN') as ('zh-CN' | 'en-US')  
+  const router = useRouter()
+  const locale = router.locale as TLocale  
   function routerHandler(path: string) {
-    push(path)
+    router.push(path)
   }
   return (
     <Card sx={{ minWidth: 275, marginTop: 8, paddingBottom: 8 }}>
       <CardContent sx={{ margin: 'auto', maxWidth: 650 }}>
         <Typography className={classes.center} sx={{ fontSize: 22, fontWeight: 700 }} gutterBottom>
-          {props.i18n[localLanuage].home.card}
+          {props.i18n[locale].card}
         </Typography>
         <Typography className={classes.demo} component="div">
-          <QAScore type="question" question={props.i18n[localLanuage].home.question} />
-          <QAScore type="answer" answer={props.i18n[localLanuage].home.answer} score={20} />
+          <QAScore type="question" question={props.i18n[locale].question} />
+          <QAScore type="answer" answer={props.i18n[locale].answer} score={20} />
         </Typography>
         <Typography sx={{ mb: 1.5, textAlign: 'center' }} color="text.secondary">
-          {props.i18n[localLanuage].home.mean}
+          {props.i18n[locale].mean}
         </Typography>
         <Typography variant="body2" component="div">
-          <b>1.</b> {props.i18n[localLanuage].home.blueCard}
+          <b>1.</b> {props.i18n[locale].blueCard}
           <br />
           <div className={classes.questionDemo}>
-            <QAScore type="question" question={props.i18n[localLanuage].home.question} />
+            <QAScore type="question" question={props.i18n[locale].question} />
           </div>
         </Typography>
         <Typography variant="body2" component="div">
-          <b>2.</b> {props.i18n[localLanuage].home.redCard}
+          <b>2.</b> {props.i18n[locale].redCard}
           <br />
           <div>
-            <QAScore type="answer" answer={props.i18n[localLanuage].home.answer} score={20} />
+            <QAScore type="answer" answer={props.i18n[locale].answer} score={20} />
           </div>
         </Typography>
         <Typography sx={{ mb: 1.5, textAlign: 'center' }} color="text.secondary">
-          {props.i18n[localLanuage].home.use}
+          {props.i18n[locale].use}
         </Typography>
         <Typography variant="body2" gutterBottom>
-          {props.i18n[localLanuage].home.input}{props.i18n[localLanuage].home.receive}
+          {props.i18n[locale].input}{props.i18n[locale].receive}
           <br />
         </Typography>
         <Typography className={classes.center} sx={{paddingBottom: 2}} color="text.secondary" gutterBottom component="div">
@@ -56,20 +57,20 @@ export default function Home(props: any) {
           <Button variant="contained">Press me</Button>
         </Typography>
         <Typography className={classes.center} sx={{ fontSize: 22, marginTop: 4, fontWeight: 700 }} gutterBottom>
-          {props.i18n[localLanuage].home.about}
+          {props.i18n[locale].about}
         </Typography>
         <Typography className={classes.center} gutterBottom>
           <Button onClick={() => routerHandler('https://github.com/Plumbiu')} variant="contained" size="small">Github</Button>
-          <Button onClick={() => routerHandler('https://github.com/Plumbiu/nextjs_tensorflow')} variant="outlined" size="small">{props.i18n[localLanuage].home.repo}</Button>
+          <Button onClick={() => routerHandler('https://github.com/Plumbiu/nextjs_tensorflow')} variant="outlined" size="small">{props.i18n[locale].repo}</Button>
         </Typography>
         <Typography variant="body2" component="div">
         </Typography>
       </CardContent>
       <CardActions className={classes.center}>
         <Typography variant="body2">
-          {props.i18n[localLanuage].home.based}
+          {props.i18n[locale].based}
         </Typography>
-        <Button variant="outlined" onClick={() => routerHandler('https://github.com/tensorflow/tfjs-models')} size="small">{props.i18n[localLanuage].home.source}</Button>
+        <Button variant="outlined" onClick={() => routerHandler('https://github.com/tensorflow/tfjs-models')} size="small">{props.i18n[locale].source}</Button>
       </CardActions>
     </Card>
   )

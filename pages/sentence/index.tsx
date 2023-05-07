@@ -1,14 +1,18 @@
 import React, { Fragment, useState } from 'react'
 import * as qna from '@tensorflow-models/qna'
-import { TextField, Button, Chip } from '@mui/material'
+import { TextField, Button } from '@mui/material'
 import classes from '@/styles/chat.module.css'
 import Loading from '@/components/Loading'
 import initialData from './initalData.json'
-import type { TQa, IQnA } from '@/types'
+import type { TQa, IQnA, TLocale } from '@/types'
 import AnswerAlert from '@/components/AnswerAlert'
 import QAScore from '@/components/QAScore'
+import Head from 'next/head'
+import i18n from '@/assets/i18n/title.json'
+import { useRouter } from 'next/router'
 
 export default function sentence() {
+  const locale = useRouter().locale as TLocale
   const [question, setQuestion] = useState('')
   const [passage, setPassage] = useState('')
   const [values, setValues] = useState<IQnA[]>([initialData])
@@ -39,6 +43,10 @@ export default function sentence() {
   }
   return (
     <div className={classes.container}>
+      <Head>
+        <title>{i18n[locale].sentence}</title>
+        <meta name="description" content={i18n[locale].sentnceDescription} />
+      </Head>
       {loading ? <Loading /> : values.map(item => (
         <Fragment key={JSON.stringify(item.q) + JSON.stringify(item.q)}>
           {item.error ? (

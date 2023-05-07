@@ -16,8 +16,16 @@ interface IIoScore {
   scores: Float32Array | Int32Array | Uint8Array
 }
 
+interface IRouterMap {
+  [props: string]: string
+}
+
+type TLocale = 'en-US' | 'zh-CN'
+
 export type {
   TQa,
   IQnA,
-  IIoScore
+  IIoScore,
+  IRouterMap,
+  TLocale
 }

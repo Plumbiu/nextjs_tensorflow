@@ -1,11 +1,14 @@
-import React, { Fragment, useId, useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { matMul } from '@tensorflow/tfjs'
 import { loadQnA } from '@tensorflow-models/universal-sentence-encoder'
 import { TextField, Button } from '@mui/material'
 import classes from '@/styles/chat.module.css'
 import Loading from '@/components/Loading'
-import type { TQa, IIoScore } from '@/types'
+import type { TQa, IIoScore, TLocale } from '@/types'
 import QAScore from '@/components/QAScore'
+import Head from 'next/head'
+import i18n from '@/assets/i18n/title.json'
+import { useRouter } from 'next/router'
 
 const initialIoScore: IIoScore = {
   queries: ['How are you feeling today?'],
@@ -14,6 +17,7 @@ const initialIoScore: IIoScore = {
 }
 
 export default function qa() {
+  const locale = useRouter().locale as TLocale
   const [ioScores, setIoScores] = useState<IIoScore[]>([initialIoScore])
   const [ioScore, setIoScore] = useState({ queries: [''], responses: [''] })
   const [loading, setLoading] = useState(false)
@@ -39,6 +43,10 @@ export default function qa() {
   }
   return (
     <div className={classes.container}>
+      <Head>
+        <title>{i18n[locale].qa}</title>
+        <meta name="description" content={i18n[locale].qaDescription} />
+      </Head>
       {loading ? <Loading /> : (
         ioScores.map(item => (
           <Fragment key={item.queries[0]+item.responses[0]}>

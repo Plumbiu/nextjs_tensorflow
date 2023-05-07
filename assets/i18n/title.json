@@ -1,0 +1,14 @@
+{
+  "en-US": {
+    "sentence": "Reading comprehension",
+    "sentnceDescription": "The Universal Sentence Encoder for question answering (USE QnA) is a model that encodes question and answer texts into 100-dimensional embeddings. The dot product of these embeddings measures how well the answer fits the question. It can also be used in other applications, including any type of text classification, clustering, etc. This module is a lightweight TensorFlow.js GraphModel. The model is based on the Transformer (Vaswani et al, 2017) architecture, and uses an 8k SentencePiece vocabulary. It is trained on a variety of data sources, with the goal of learning text representations that are useful out-of-the-box to retrieve an answer given a question.",
+    "qa": "U ask me to answer",
+    "qaDescription": "The model can be used to build a system that can answer users’ questions in natural language. It was created using a pre-trained BERT model fine-tuned on SQuAD 2.0 dataset. BERT, or Bidirectional Encoder Representations from Transformers, is a method of pre-training language representations which obtains state-of-the-art results on a wide array of Natural Language Processing tasks. This app uses a compressed version of BERT, MobileBERT, that runs 4x faster and has 4x smaller model size. SQuAD, or Stanford Question Answering Dataset, is a reading comprehension dataset consisting of articles from Wikipedia and a set of question-answer pairs for each article. The model takes a passage and a question as input, then returns a segment of the passage that most likely answers the question. It requires semi-complex pre-processing including tokenization and post-processing steps that are described in the BERT paper and implemented in the sample app. This model is also available in TFLite."
+  },
+  "zh-CN": {
+    "sentence": "阅读理解",
+    "sentnceDescription": "用于问答的通用句子编码器 （USE QnA） 是一种将问答文本编码为 100 维嵌入的模型。这些嵌入的点积衡量答案与问题的拟合程度。它还可用于其他应用程序，包括任何类型的文本分类、聚类等。这个模块是一个轻量级的TensorFlow.js GraphModel。该模型基于Transformer（Vaswani等人，2017）架构，并使用8k SentencePiece词汇表。它基于各种数据源进行训练，目标是学习开箱即用的文本表示形式，以检索给定问题的答案。",
+    "qa": "你问我答",
+    "qaDescription": "该模型可用于构建一个可以用自然语言回答用户问题的系统。它是使用在SQuAD 2.0数据集上微调的预训练BERT模型创建的。BERT，或来自变压器的双向编码器表示，是一种预训练语言表示的方法，可在各种自然语言处理任务上获得最先进的结果。此应用程序使用压缩版本的BERT，MobileBERT，其运行速度提高了4倍，模型尺寸缩小了4倍。SQuAD，或斯坦福问答数据集，是一个阅读理解数据集，由维基百科的文章和每篇文章的一组问答对组成。该模型将段落和问题作为输入，然后返回最有可能回答问题的段落片段。它需要半复杂的预处理，包括标记化和后处理步骤，这些步骤在 BERT 论文中描述并在示例应用程序中实现。此型号在TFLite中也可用。"
+  }
+}
