@@ -1,0 +1,22 @@
+.container {
+  @apply flex flex-col items-start py-16;
+}
+.box {
+  @apply text-right mx-2 my-2;
+  @apply min-h-min text-lg rounded-bl-lg rounded-tl-3xl rounded-br-3xl;
+  @apply text-white text-left px-4 py-3.5;
+}
+.answerBox {
+  @apply self-start bg-red-500;
+}
+.answerScoreBox {
+  @apply flex items-center;
+}
+.questionBox {
+  @apply self-end bg-blue-500;
+}
+.userInput {
+  @apply fixed bottom-0 left-0 w-full bg-white px-1 py-2;
+  @apply flex items-center justify-center gap-1;
+  @apply shadow-2xl shadow-black;
+}

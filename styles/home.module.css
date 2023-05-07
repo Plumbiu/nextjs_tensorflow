@@ -1,0 +1,9 @@
+.demo {
+  @apply flex flex-col my-4;
+}
+.questionDemo {
+  @apply flex justify-end;
+}
+.center {
+  @apply flex justify-center gap-1;
+}
