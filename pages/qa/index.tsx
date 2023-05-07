@@ -1,77 +1,71 @@
-import React, { Fragment, useState } from 'react'
-import * as qna from '@tensorflow-models/qna'
-import { TextField, Button, Chip } from '@mui/material'
+import React, { Fragment, useId, useState } from 'react'
+import { matMul } from '@tensorflow/tfjs'
+import { loadQnA } from '@tensorflow-models/universal-sentence-encoder'
+import { TextField, Button } from '@mui/material'
 import classes from '@/styles/chat.module.css'
 import Loading from '@/components/Loading'
-import initialData from './initalData.json'
-import type { TQa, IQnA } from '@/types'
-import AnswerAlert from '@/components/AnswerAlert'
+import type { TQa, IIoScore } from '@/types'
 import QAScore from '@/components/QAScore'
 
+const initialIoScore: IIoScore = {
+  queries: ['How are you feeling today?'],
+  responses: ['Beijing is the capital of China.', 'good.'],
+  scores: new Float32Array([6.837286472320557, 9.737372398376465]),
+}
+
 export default function qa() {
-  const [question, setQuestion] = useState('')
-  const [passage, setPassage] = useState('')
-  const [values, setValues] = useState<IQnA[]>([initialData])
+  const [ioScores, setIoScores] = useState<IIoScore[]>([initialIoScore])
+  const [ioScore, setIoScore] = useState({ queries: [''], responses: [''] })
   const [loading, setLoading] = useState(false)
-  function questionHandler(e: TQa) {
-    setQuestion(e.target.value)
-  }
-  function passageHandler(e: TQa) {
-    setPassage(e.target.value)
-  }
-  async function answerHandler() {
+  async function handler() {
     try {
       setLoading(true)
-      const model = await qna.load()
-      const tfAnswers = await model?.findAnswers(question, passage)
-      if (!tfAnswers.length) throw new Error('返回值为空，请重新填写描述和问题')
-      setValues([...values, {
-        q: question,
-        p: passage,
-        answer: tfAnswers,
-        error: false,
-      }])
-    } catch (err) {
-      setValues([...values, { error: true }])
+      const model = await loadQnA()
+      const formatedIoScore = { ...ioScore, responses: ioScore.responses[0].split(';') }
+      const embeddings = model.embed(formatedIoScore)
+      const scores = matMul(embeddings['queryEmbedding'], embeddings['responseEmbedding'], false,true).dataSync()
+      setIoScores([...ioScores, { ...formatedIoScore, scores }])
+    } catch (error) {
+      console.log(error)
     } finally {
       setLoading(false)
     }
   }
+  function responseHandler(e: TQa) {
+    setIoScore({ ...ioScore, responses: [e.target.value] })
+  }
+  function queriesHandler(e: TQa) {
+    setIoScore({ ...ioScore, queries: [e.target.value] })
+  }
   return (
     <div className={classes.container}>
-      {loading ? <Loading /> : values.map(item => (
-        <Fragment key={JSON.stringify(item.q) + JSON.stringify(item.q)}>
-          {item.error ? (
-            <AnswerAlert msg='服务器返回了一个空的数组' strongMsg='请修改描述和问题!' />
-          ) : (
-            <>
-              <QAScore question={item.p || ''} type='question'/>
-              <QAScore question={item.q || ''} type='question'/>
-              {item.answer && item.answer.map(sub => <QAScore key={sub.text + sub.score} answer={sub || ''} type='answer' />)}
-            </>
-          )}
-        </Fragment>
+      {loading ? <Loading /> : (
+        ioScores.map(item => (
+          <Fragment key={item.queries[0]+item.responses[0]}>
+            <QAScore type='question' question={item.queries[0]} />
+            {item.responses.map((rItem, rIndex) =>  <QAScore key={rItem} type='answer' answer={rItem} score={item.scores[rIndex]} />)}
+          </Fragment>
         ))
-      }
+      )}
       <div className={classes.userInput}>
         <TextField
-          onChange={passageHandler}
+          onChange={queriesHandler}
+          value={ioScore.queries[0]}
           size="small"
-          value={passage}
-          label="描述"
-          variant="outlined"
-        />
-        <TextField
-          onChange={questionHandler}
-          size="small"
-          value={question}
           label="问题"
           variant="outlined"
         />
+        <TextField
+          onChange={responseHandler}
+          value={ioScore.responses[0]}
+          size="small"
+          label="回答"
+          variant="outlined"
+        />
         <Button
-          disabled={!passage || !question}
+          disabled={!(ioScore.queries[0] && ioScore.responses[0])}
+          onClick={handler}
           variant="contained"
-          onClick={answerHandler}
         >
           发送
         </Button>
