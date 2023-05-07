@@ -28,7 +28,7 @@ export default function Home() {
           <QAScore type="question" question={i18n[localLanuage].home.question} />
           <QAScore type="answer" answer={i18n[localLanuage].home.answer} score={20} />
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Typography sx={{ mb: 1.5, textAlign: 'center' }} color="text.secondary">
           {i18n[localLanuage].home.mean}
         </Typography>
         <Typography variant="body2" component="div">
@@ -41,18 +41,18 @@ export default function Home() {
         <Typography variant="body2" component="div">
           <b>2.</b> {i18n[localLanuage].home.redCard}
           <br />
-          <QAScore type="answer" answer={i18n[localLanuage].home.answer} score={20} />
+          <div>
+            <QAScore type="answer" answer={i18n[localLanuage].home.answer} score={20} />
+          </div>
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Typography sx={{ mb: 1.5, textAlign: 'center' }} color="text.secondary">
           {i18n[localLanuage].home.use}
         </Typography>
         <Typography variant="body2" gutterBottom>
-          {i18n[localLanuage].home.input}
-          <br />
-          {i18n[localLanuage].home.receive}
+          {i18n[localLanuage].home.input}{i18n[localLanuage].home.receive}
           <br />
         </Typography>
-        <Typography className={classes.center} color="text.secondary" gutterBottom component="div">
+        <Typography className={classes.center} sx={{paddingBottom: 2}} color="text.secondary" gutterBottom component="div">
           <TextField size="small" label="question" variant="outlined" />
           <Button variant="contained">Press me</Button>
         </Typography>
