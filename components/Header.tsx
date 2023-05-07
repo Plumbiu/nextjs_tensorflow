@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   Box,
   AppBar,
@@ -14,7 +14,6 @@ import { IRouterMap, TLocale } from '@/types'
 import i18n from '@/assets/i18n/title.json'
 
 export default function Header() {
-
   const router = useRouter()
   const locale = router.locale as TLocale
   const routerMap: IRouterMap = {

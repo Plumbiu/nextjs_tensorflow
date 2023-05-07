@@ -1,17 +1,9 @@
 body {
-  margin: 0;
+  @apply m-0;
 }
 .circle {
-  position: fixed;
-  display: flex;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  justify-content: center;
-  align-items: center;
-  z-index: 999999;
-  background-color: rgba(33, 33, 33, 0);
+  @apply fixed top-0 left-0 bottom-0 right-0;
+  @apply flex justify-center items-center;
 }
 .alert {
   @apply mr-4 self-end mx-4 my-2;
