@@ -3,7 +3,6 @@ import '../styles/globals.css'
 import '@tensorflow/tfjs-backend-cpu'
 import '@tensorflow/tfjs-backend-webgl'
 import '@tensorflow/tfjs'
-import '@/utils/i18n'
 import Header from '@/components/Header'
 
 export default function App({ Component, pageProps }: AppProps) {

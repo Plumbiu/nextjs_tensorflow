@@ -1,0 +1,42 @@
+{
+  "en-US": {
+    "home": {
+      "card": "You will see some card like this",
+      "mean": "What's this mean?",
+      "question": "This is a question",
+      "answer": "This is an answer",
+      "blueCard": "The blue one is your question or passage",
+      "redCard": "The red one is the answer and score which indicates the confident level",
+      "repo": "repo",
+      "use": "How to use it?",
+      "input": "put your question in the Input and Press the Button!",
+      "receive": "you will receive the answer from the server after a while",
+      "about": "About Me",
+      "based": "This project is based on TensorFlow",
+      "source": "Source Code"
+    },
+    "bar": {
+      "home": "home"
+    }
+  },
+  "zh-CN": {
+    "home": {
+      "card": "你会看到像这样的聊天卡片",
+      "mean": "卡片有什么含义?",
+      "question": "这一个问题",
+      "answer": "这是一个回答",
+      "blueCard": "蓝色卡片包含你的问题或者文章",
+      "redCard": "红色卡片代表答案以及跟问题相关程度的分数",
+      "repo": "仓库",
+      "use": "如何使用?",
+      "input": "将你的问题或者文章输入到文本框，点击按钮!",
+      "receive": "不久后你就会收到来自服务端的答案和分数",
+      "about": "关于我",
+      "based": "此项目基于 TensorFlow 开发",
+      "source": "源码地址"
+    },
+    "bar": {
+      "home": "首页"
+    }
+  }
+}
