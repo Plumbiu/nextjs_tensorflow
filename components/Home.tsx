@@ -10,7 +10,7 @@ import React from 'react'
 import QAScore from './QAScore'
 import classes from '@/styles/home.module.css'
 import { useRouter } from 'next/router'
-import i18n from '@/assets/i18n.json'
+import i18n from '@/assets/i18n/home.json'
 
 export default function Home() {
   const { push, locale } = useRouter()

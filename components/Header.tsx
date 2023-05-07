@@ -15,19 +15,17 @@ interface IRouterMap {
 }
 
 export default function Header() {
-  const [switchStatus, setSwitchStatus] = useState(false)
   const routerMap: IRouterMap = {
     '/qa': 'U ask me to answer',
     '/sentence': 'Reading comprehension',
     '/': '',
   }
-  const { push, pathname, asPath } = useRouter()
+  const { push, pathname, asPath, locale } = useRouter()
   function backHome() {
     push('/')
   }
   function switchHandler() {
-    setSwitchStatus(!switchStatus)
-    const lan = switchStatus ? 'en-US' : 'zh-CN'
+    const lan = locale === 'en-US' ?  'zh-CN' : 'en-US'
     push(pathname, asPath, {
       locale: lan
     })
@@ -42,9 +40,7 @@ export default function Header() {
               <Typography>简体中文</Typography>
               <Switch
                 color="default"
-                value={switchStatus}
                 onChange={switchHandler}
-                defaultChecked
                 inputProps={{ 'aria-label': 'ant design' }}
               />
               <Typography>English</Typography>

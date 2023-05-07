@@ -14,16 +14,13 @@
       "about": "About Me",
       "based": "This project is based on TensorFlow",
       "source": "Source Code"
-    },
-    "bar": {
-      "home": "home"
     }
   },
   "zh-CN": {
     "home": {
       "card": "你会看到像这样的聊天卡片",
       "mean": "卡片有什么含义?",
-      "question": "这一个问题",
+      "question": "这是一个问题",
       "answer": "这是一个回答",
       "blueCard": "蓝色卡片包含你的问题或者文章",
       "redCard": "红色卡片代表答案以及跟问题相关程度的分数",
@@ -34,9 +31,6 @@
       "about": "关于我",
       "based": "此项目基于 TensorFlow 开发",
       "source": "源码地址"
-    },
-    "bar": {
-      "home": "首页"
     }
   }
 }
