@@ -1,7 +1,7 @@
 import React, { Fragment, useId, useState } from 'react'
 import { matMul } from '@tensorflow/tfjs'
 import { loadQnA } from '@tensorflow-models/universal-sentence-encoder'
-import { TextField, Button, Box, Chip } from '@mui/material'
+import { TextField, Button } from '@mui/material'
 import classes from '@/styles/chat.module.css'
 import Loading from '@/components/Loading'
 import type { TQa, IIoScore } from '@/types'
