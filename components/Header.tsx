@@ -15,13 +15,11 @@ interface IRouterMap {
 
 export default function Header() {
   const routerMap: IRouterMap = {
-    '/qa': '你问我答',
-    '/sentence': '阅读理解',
-    '/': '首页'
+    '/qa': 'U ask me to answer',
+    '/sentence': 'Reading comprehension',
+    '/': ''
   }
   const router = useRouter()
-  console.log(router);
-  
   function backHome() {
     router.push('/')
   }

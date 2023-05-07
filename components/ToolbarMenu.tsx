@@ -1,5 +1,4 @@
 import { useState, MouseEvent } from 'react'
-import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { useRouter } from 'next/router'
@@ -45,7 +44,7 @@ export default function SentenceMenu() {
       >
         <MenuItem onClick={() => handleClose('qa')}>QnA</MenuItem>
         <MenuItem onClick={() => handleClose('sentence')}>Sentence</MenuItem>
-        <MenuItem onClick={() => handleClose('qa')}>Logout</MenuItem>
+        <MenuItem onClick={() => handleClose('qa')}>....</MenuItem>
       </Menu>
     </div>
   )

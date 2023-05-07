@@ -17,9 +17,9 @@ export default function Home() {
     router.push(path)
   }
   return (
-    <Card sx={{ minWidth: 275, marginTop: 8 }}>
+    <Card sx={{ minWidth: 275, marginTop: 8, paddingBottom: 8 }}>
       <CardContent sx={{ margin: 'auto', maxWidth: 650 }}>
-        <Typography className={classes.center} sx={{ fontSize: 20 }} gutterBottom>
+        <Typography className={classes.center} sx={{ fontSize: 22, fontWeight: 700 }} gutterBottom>
           You will see some card like this
         </Typography>
         <Typography className={classes.demo} component="div">
@@ -54,18 +54,21 @@ export default function Home() {
           <TextField size="small" label="question" variant="outlined" />
           <Button variant="contained">Press me</Button>
         </Typography>
-        <Typography className={classes.center} sx={{ fontSize: 20, marginTop: 4 }} gutterBottom>
+        <Typography className={classes.center} sx={{ fontSize: 22, marginTop: 4, fontWeight: 700 }} gutterBottom>
           About Me 
         </Typography>
         <Typography className={classes.center} gutterBottom>
-          <Button onClick={() => routerHandler('https://github.com/Plumbiu')} variant="outlined" size="small">Github</Button>
+          <Button onClick={() => routerHandler('https://github.com/Plumbiu')} variant="contained" size="small">Github</Button>
+          <Button onClick={() => routerHandler('https://github.com/Plumbiu/nextjs_tensorflow')} variant="outlined" size="small">repo</Button>
         </Typography>
         <Typography variant="body2" component="div">
-          
         </Typography>
       </CardContent>
       <CardActions className={classes.center}>
-        <Button onClick={() => routerHandler('https://github.com/tensorflow/tfjs-models')} size="small">Learn More</Button>
+        <Typography variant="body2">
+          This project is based on TensorFlow
+        </Typography>
+        <Button variant="outlined" onClick={() => routerHandler('https://github.com/tensorflow/tfjs-models')} size="small">Source Code</Button>
       </CardActions>
     </Card>
   )

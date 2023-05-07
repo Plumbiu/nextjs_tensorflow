@@ -5,5 +5,5 @@
   @apply flex justify-end;
 }
 .center {
-  @apply flex justify-center gap-1;
+  @apply flex items-center justify-center gap-1;
 }
