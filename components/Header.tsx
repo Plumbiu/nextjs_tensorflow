@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { Fragment, useState } from 'react'
 import {
   Box,
   AppBar,
   Toolbar,
   Typography,
   Button,
-  Switch,
-  Stack,
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
 } from '@mui/material'
 import ToolbarMenu from './ToolbarMenu'
 import { useRouter } from 'next/router'
@@ -15,7 +17,7 @@ import i18n from '@/assets/i18n/title.json'
 
 export default function Header() {
   const router = useRouter()
-  const locale = router.locale as TLocale
+  const [locale, setLocale] = useState<TLocale>(router.locale as TLocale)
   const routerMap: IRouterMap = {
     '/qa': i18n[locale].qa,
     '/sentence': i18n[locale].sentence,
@@ -24,9 +26,10 @@ export default function Header() {
   function backHome() {
     router.push('/')
   }
-  function switchHandler() {
+  function handleChange(_: any, { props }: any) {
+    setLocale(props.value)
     router.push(router.pathname, router.asPath, {
-      locale: locale === 'en-US' ?  'zh-CN' : 'en-US'
+      locale: props.value
     })
   }
   return (
@@ -35,15 +38,22 @@ export default function Header() {
         <Toolbar>
           <ToolbarMenu />
           {routerMap[router.pathname] === '' ? (
-            <Stack sx={{flexGrow: 1}} direction="row" spacing={1} alignItems="center">
-              <Typography>简体中文</Typography>
-              <Switch
-                color="default"
-                onChange={switchHandler}
-                inputProps={{ 'aria-label': 'ant design' }}
-              />
-              <Typography>English</Typography>
-            </Stack>
+            <div style={{flexGrow: 1, height: '45px'}}>
+              <FormControl sx={{ height:'100%' }}>
+                <InputLabel id="language-simple-select-label">Language</InputLabel>
+                <Select
+                  sx={{flexGrow: 1, height: '80%'}}
+                  labelId="language-simple-select-label"
+                  id="language-simple-select"
+                  value={locale}
+                  label="locale"
+                  onChange={handleChange}
+                >
+                  <MenuItem value='en-US'>Engilish</MenuItem>
+                  <MenuItem value='zh-CN'>简体中文</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
           ) : (
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               {routerMap[router.pathname]}

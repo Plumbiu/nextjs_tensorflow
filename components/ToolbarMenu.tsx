@@ -44,7 +44,8 @@ export default function SentenceMenu() {
       >
         <MenuItem onClick={() => handleClose('qa')}>QnA</MenuItem>
         <MenuItem onClick={() => handleClose('sentence')}>Sentence</MenuItem>
-        <MenuItem onClick={() => handleClose('qa')}>....</MenuItem>
+        <MenuItem onClick={() => handleClose('nsfw')}>nsfw</MenuItem>
+        <MenuItem onClick={() => handleClose('nsfw')}>....</MenuItem>
       </Menu>
     </div>
   )
