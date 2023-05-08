@@ -1,0 +1,16 @@
+.container {
+  @apply mt-20;
+}
+.content {
+  @apply m-4;
+}
+.content img {
+  @apply w-full;
+}
+.iptContainer {
+  @apply flex justify-center mt-4;
+}
+.loading {
+  @apply flex justify-center items-center;
+  @apply w-4/5 mx-auto h-40;
+}
