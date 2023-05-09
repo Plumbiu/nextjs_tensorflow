@@ -1,7 +1,18 @@
 import React, { useRef, useState } from 'react'
 import classes from './nfsw.module.css'
 import * as nsfw from 'nsfwjs'
-import { CircularProgress, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import {
+  Button,
+  CircularProgress,
+  Paper,
+  Skeleton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@mui/material'
 
 export default function nfsw() {
   const iptRef = useRef<HTMLInputElement>(null)
@@ -20,60 +31,71 @@ export default function nfsw() {
     setLoading(true)
     if (!iptRef.current || !iptRef.current.files) return
     const file = iptRef.current.files[0]
-    setImgSrc(() => window.URL.createObjectURL(file))
+    setImgSrc(window.URL.createObjectURL(file))
     try {
       const model = await nsfw.load()
-      if(!imgRef.current) return
+      if (!imgRef.current) return
       const predictions = await model.classify(imgRef.current)
       console.log(predictions)
       const formatedPredictions = predictions.map(item => {
-        return createData(item.className, `${(item.probability * 100).toFixed(2)}%`)
+        return createData(
+          item.className,
+          `${(item.probability * 100).toFixed(2)}%`
+        )
       })
       setRows(formatedPredictions)
-    } catch(err) { 
+    } catch (err) {
     } finally {
       setLoading(false)
     }
-
   }
-  function createData(
-    name: string,
-    probability: string,
-  ) {
-    return { name, probability };
+  function createData(name: string, probability: string) {
+    return { name, probability }
   }
 
   return (
     <div className={classes.container}>
-      <div className={classes.content}>
+      <div style={{flex: '20%'}}>
         {!imgSrc ? (
           <Skeleton
-            sx={{ height: 190 }}
+            className={classes.skeleton}
             animation="wave"
             variant="rectangular"
           />
         ) : (
-          <img ref={imgRef} src={imgSrc} alt="image" />
+          <img
+            className={classes.demoImg}
+            ref={imgRef}
+            src={imgSrc}
+            alt="image"
+          />
         )}
+        <div className={classes.iptContainer}>
+          <input
+            hidden
+            title=""
+            ref={iptRef}
+            onChange={showImg}
+            type="file"
+            accept="image/png,image/jpg"
+          />
+          <Button
+            sx={{ mb: 2 }}
+            variant="contained"
+            onClick={() => iptRef.current?.click()}
+          >
+            上传文件
+          </Button>
+        </div>
       </div>
-      <div className={classes.iptContainer}>
-        <input
-          style={{appearance: 'none'}}
-          title=''
-          ref={iptRef}
-          onChange={showImg}
-          type="file"
-          accept="image/png,image/jpg"
-        />
-      </div>
-      {
-        loading ? (
+      <div style={{flex: 1}}>
+        {loading ? (
           <div className={classes.loading}>
             <CircularProgress disableShrink />
           </div>
-        ): (
+        ) : (
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 250 }} aria-label="simple table">
+            <Table aria-label="nsfw table">
               <TableHead>
                 <TableRow>
                   <TableCell>name</TableCell>
@@ -95,8 +117,8 @@ export default function nfsw() {
               </TableBody>
             </Table>
           </TableContainer>
-        )
-      }
+        )}
+      </div>
     </div>
   )
 }

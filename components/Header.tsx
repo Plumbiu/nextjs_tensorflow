@@ -21,6 +21,7 @@ export default function Header() {
   const routerMap: IRouterMap = {
     '/qa': i18n[locale].qa,
     '/sentence': i18n[locale].sentence,
+    '/nsfw': i18n[locale].nsfw,
     '/': '',
   }
   function backHome() {
