@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import {
   Box,
   AppBar,
@@ -35,7 +35,7 @@ export default function Header() {
   }
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
+      <AppBar color='inherit' position="fixed">
         <Toolbar>
           <ToolbarMenu />
           {routerMap[router.pathname] === '' ? (
