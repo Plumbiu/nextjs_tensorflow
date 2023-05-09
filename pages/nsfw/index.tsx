@@ -58,6 +58,7 @@ export default function nfsw() {
       <div style={{flex: '40%'}}>
         {!imgSrc ? (
           <Skeleton
+            style={{height: 'auto'}}
             className={classes.skeleton}
             animation="wave"
             variant="rectangular"

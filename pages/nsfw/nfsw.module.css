@@ -6,7 +6,7 @@
   @apply w-full;
 }
 .skeleton {
-  @apply w-full h-auto aspect-square;
+  @apply w-full aspect-square;
 }
 .iptContainer {
   @apply flex justify-center mt-2;
