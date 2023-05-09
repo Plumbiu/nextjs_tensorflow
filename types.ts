@@ -22,10 +22,23 @@ interface IRouterMap {
 
 type TLocale = 'en-US' | 'zh-CN'
 
+interface IQuestion {
+  type: 'question'
+  question: string
+}
+
+interface IAnswer {
+  type: 'answer'
+  answer: Answer | string
+  score?: number
+}
+
 export type {
   TQa,
   IQnA,
   IIoScore,
   IRouterMap,
-  TLocale
+  TLocale,
+  IQuestion,
+  IAnswer
 }

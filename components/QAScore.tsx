@@ -2,17 +2,9 @@ import React from 'react'
 import classes from '@/styles/chat.module.css'
 import { Box, Chip } from '@mui/material'
 import { Answer } from '@tensorflow-models/qna/dist/question_and_answer'
+import { IAnswer, IQuestion } from '@/types'
 
-interface IQuestion {
-  type: 'question'
-  question: string
-}
 
-interface IAnswer {
-  type: 'answer'
-  answer: Answer | string
-  score?: number
-}
 
 export default function QAScore(props: IAnswer | IQuestion) {
   if (props.type === 'question') {
