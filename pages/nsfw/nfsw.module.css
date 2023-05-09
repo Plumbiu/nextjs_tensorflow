@@ -1,17 +1,15 @@
 .container {
   @apply mt-16 p-4;
-  @apply lg:flex lg:px-28 lg:mt-40 gap-8;
+  @apply lg:flex gap-8;
 }
 .demoImg {
   @apply w-full;
-  @apply lg:h-80;
 }
 .skeleton {
-  @apply h-52;
-  @apply lg:h-96 md:h-80;
+  @apply w-full h-auto aspect-square;
 }
 .iptContainer {
-  @apply flex justify-center;
+  @apply flex justify-center mt-2;
 }
 .loading {
   @apply flex justify-center items-center;

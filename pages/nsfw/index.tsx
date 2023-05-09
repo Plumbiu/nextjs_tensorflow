@@ -55,7 +55,7 @@ export default function nfsw() {
 
   return (
     <div className={classes.container}>
-      <div style={{flex: '20%'}}>
+      <div style={{flex: '40%'}}>
         {!imgSrc ? (
           <Skeleton
             className={classes.skeleton}
@@ -88,7 +88,7 @@ export default function nfsw() {
           </Button>
         </div>
       </div>
-      <div style={{flex: 1}}>
+      <div style={{flex: '60%'}}>
         {loading ? (
           <div className={classes.loading}>
             <CircularProgress disableShrink />

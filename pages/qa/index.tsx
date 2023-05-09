@@ -44,8 +44,8 @@ export default function qa() {
   return (
     <div className={classes.container}>
       <Head>
-        <title>{i18n[locale].qa}</title>
-        <meta name="description" content={i18n[locale].qaDescription} />
+        <title>{i18n[locale].qna}</title>
+        <meta name="description" content={i18n[locale].qnaDescription} />
       </Head>
       {loading ? <Loading /> : (
         ioScores.map(item => (
