@@ -3,11 +3,11 @@
 }
 .box {
   @apply text-right mx-2 my-2;
-  @apply min-h-min text-lg rounded-bl-lg rounded-tl-3xl rounded-br-3xl;
+  @apply min-h-min text-lg rounded-bl-md rounded-tl-3xl rounded-br-3xl;
   @apply text-white text-left px-4 py-3.5;
 }
 .answerBox {
-  @apply self-start bg-red-500;
+  @apply self-start bg-red-500 rounded-tr-md rounded-bl-none;
 }
 .answerScoreBox {
   @apply flex items-center;
