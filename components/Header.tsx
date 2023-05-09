@@ -19,7 +19,7 @@ export default function Header() {
   const router = useRouter()
   const [locale, setLocale] = useState<TLocale>(router.locale as TLocale)
   const routerMap: IRouterMap = {
-    '/qa': i18n[locale].qa,
+    '/qa': i18n[locale].qna,
     '/sentence': i18n[locale].sentence,
     '/nsfw': i18n[locale].nsfw,
     '/': '',
