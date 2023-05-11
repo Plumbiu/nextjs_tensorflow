@@ -1,8 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import * as qna from '@tensorflow-models/qna'
-import { TextField, Button } from '@mui/material'
+import { TextField, Button, Backdrop, CircularProgress } from '@mui/material'
 import classes from '@/styles/chat.module.css'
-import Loading from '@/components/Loading'
 import initialData from './initalData.json'
 import type { TQa, IQnA, TLocale } from '@/types'
 import AnswerAlert from '@/components/AnswerAlert'
@@ -47,7 +46,13 @@ export default function qa() {
         <title>{i18n[locale].sentence}</title>
         <meta name="description" content={i18n[locale].sentnceDescription} />
       </Head>
-      {loading ? <Loading /> : values.map(item => (
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme: { zIndex: { drawer: number } }) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+      {values.map(item => (
         <Fragment key={JSON.stringify(item.q) + JSON.stringify(item.q)}>
           {item.error ? (
             <AnswerAlert msg='服务器返回了一个空的数组' strongMsg='请修改描述和问题!' />

@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import classes from './nfsw.module.css'
 import * as nsfw from 'nsfwjs'
 import {
+  Backdrop,
   Button,
   CircularProgress,
   Paper,
@@ -19,11 +20,11 @@ export default function nfsw() {
   const imgRef = useRef<HTMLImageElement>(null)
   const [imgSrc, setImgSrc] = useState('')
   const [rows, setRows] = useState([
-    createData('Drawing', '0'),
-    createData('Hentai', '0'),
-    createData('Neutral', '0'),
-    createData('Porn', '0'),
-    createData('Sexy', '0'),
+    createData('Drawing', '0%'),
+    createData('Hentai', '0%'),
+    createData('Neutral', '0%'),
+    createData('Porn', '0%'),
+    createData('Sexy', '0%'),
   ])
   const [loading, setLoading] = useState(false)
 
@@ -90,35 +91,35 @@ export default function nfsw() {
         </div>
       </div>
       <div style={{flex: '60%'}}>
-        {loading ? (
-          <div className={classes.loading}>
-            <CircularProgress disableShrink />
-          </div>
-        ) : (
-          <TableContainer component={Paper}>
-            <Table aria-label="nsfw table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>name</TableCell>
-                  <TableCell>probities</TableCell>
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme: { zIndex: { drawer: number } }) => theme.zIndex.drawer + 1 }}
+          open={loading}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+        <TableContainer component={Paper}>
+          <Table aria-label="nsfw table">
+            <TableHead>
+              <TableRow>
+                <TableCell>name</TableCell>
+                <TableCell>probities</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map(row => (
+                <TableRow
+                  key={row.name}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell>{row.probability}</TableCell>
                 </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map(row => (
-                  <TableRow
-                    key={row.name}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    <TableCell>{row.probability}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        )}
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
     </div>
   )
