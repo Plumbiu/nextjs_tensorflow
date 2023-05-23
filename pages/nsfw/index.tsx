@@ -37,7 +37,6 @@ export default function nfsw() {
       const model = await nsfw.load()
       if (!imgRef.current) return
       const predictions = await model.classify(imgRef.current)
-      console.log(predictions)
       const formatedPredictions = predictions.map(item => {
         return createData(
           item.className,

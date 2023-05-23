@@ -29,7 +29,6 @@ export default function sentence() {
       const scores = matMul(embeddings['queryEmbedding'], embeddings['responseEmbedding'], false,true).dataSync()
       setIoScores([...ioScores, { ...formatedIoScore, scores }])
     } catch (error) {
-      console.log(error)
     } finally {
       setLoading(false)
     }
